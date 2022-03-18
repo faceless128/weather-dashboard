@@ -13,29 +13,41 @@
 </head>
 
 <body>
-
+<div class="container-fluid">
   <div class="row no-gutters">
-    <header class="col-12 bg-dark text-light sticky-top d-flex flex-column p-4 p-lg-3">
+    <!-- page header -->
+    <header class="col-12 bg-dark text-light sticky-top d-flex flex-column mt-4 mt-lg-3 p-4 p-lg-3">
       <h1 class="text-center">
         Weather Dashboard
       </h1>
     </header>
-    <main class="col-12 d-flex flex-column">
-      <div class="row">
-      <div class="col-2" id="search">
-        <h2>Search for a City:</h2>
-        <form id="search-form">
-          <input name="search-city" id="search-city" type="text" autofocus="true" class="form-input" />
-          <button type="submit" class="btn">Search</button>
-        </form>
-        
+    <!-- main body -->
+    <main class="col-12 d-flex flex-column p-2">
+      <div class="row ">
+        <!-- search area-->
+        <div class="col-12 col-md-4 col-lg-3 col-xl-2" id="search">
+          <h2>Search for a City:</h2>
+          <form id="search-form">
+            <input name="search-city" id="search-city" type="text" autofocus="true" class="form-input" />
+            <button type="submit" class="btn">Search</button>
+          </form>
+  
+        </div>
+        <!-- current weather area -->
+        <div class="col-12 col-md-8 col-lg-9 col-xl-10">
+          <div class="row" id="results">
+  
+          </div>
+        </div>
+        <!-- 5-day forecast area -->
+        <div class="col-12 col-md-8 col-lg-9 col-xl-10">
+          <div class="row" id="future">
+  
+          </div>
+        </div>
       </div>
-      <div class="col-10" id="results">
-
-      </div>
-    </div>
     </main>
-
+  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
