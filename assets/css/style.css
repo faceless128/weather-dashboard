@@ -37,6 +37,7 @@ h2 {
    box-shadow: 2px 2px black;
 }
 
+/* styles for saved cities list */
 .city-group {
     padding: 0;
     list-style: none;
@@ -84,7 +85,7 @@ h2 {
     color: white;
 }
 
-
+/* styles for five days forecast */
 .five-days {
     margin: 0px 1px 3px 1px;
     background-color: grey;

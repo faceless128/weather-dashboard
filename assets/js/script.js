@@ -6,6 +6,7 @@ var searchResultsEl = document.querySelector("#results");
 var fiveDayForecastEl = document.querySelector("#future");
 
 var savedCityListEl = document.querySelector("#city-group");
+var cities = [];
 
 // capture search input
 var formSubmitHandler = function(event) {
@@ -27,6 +28,7 @@ var getLonLat = function(cityName) {
         if (response.ok) {
             response.json().then(function (data) {
                 getWeather(data.latt, data.longt, cityName);
+                writeCityToList(data.latt, data.longt, cityName);
                 storeCity(data.latt, data.longt, cityName);
             });
         } else {
@@ -114,7 +116,6 @@ var showWeather = function(data, cityName) {
     fiveDayForecastEl.appendChild(fiveDayHeader);
     for (var i = 1; i < 6; i++) {
         var dateVal = getDate(data.daily[i].dt);
-        console.log(dateVal, data.daily[i].temp.day, data.daily[i].wind_speed, data.daily[i].humidity);
         var fiveDayWeatherEl = document.createElement("div");
         fiveDayWeatherEl.classList = "col-12 col-md-3 col-xl-2 five-days";
         var futureDate = document.createElement("p");
@@ -134,6 +135,13 @@ var showWeather = function(data, cityName) {
 }
 
 var storeCity = function(lat, lon, cityName) {
+    var currentCity = {lat: lat, lon: lon, cityName: cityName};
+    cities.push(currentCity);
+    console.log(cities);
+    localStorage.setItem("cities", JSON.stringify(cities));
+}
+
+var writeCityToList = function(lat, lon, cityName) {
     var cityListItemEl = document.createElement("li");
     cityListItemEl.innerHTML = "<span class='btn' data-lat='" + lat + "' data-lon='" + lon + "'>" + cityName + "</span>";
     savedCityListEl.appendChild(cityListItemEl);
@@ -146,6 +154,20 @@ var savedCityHandler = function(event) {
     getWeather(lat, lon, cityName);
 }
 
+var loadCities = function() {
+    cities = JSON.parse(localStorage.getItem("cities"));
+      // init array if localstorage is empty
+    if (!cities) {
+      cities = [];
+    }
+    console.log(cities);
+    for (var i = 0; i < cities.length; i++) {
+        writeCityToList(cities[i].lat, cities[i].lon, cities[i].cityName) ;
+    }
+  };
+
 // listen for search submission
 searchFormEl.addEventListener("submit", formSubmitHandler);
 savedCityListEl.addEventListener("click", savedCityHandler);
+
+loadCities();
