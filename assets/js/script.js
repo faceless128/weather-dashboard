@@ -105,7 +105,7 @@ var showWeather = function(data, cityName) {
     var colorUVI = styleColorUVI(data.current.uvi);
     currentUVI.innerHTML = "UV Index: <span class='p-1 " + colorUVI + "'>" + data.current.uvi + "</span>";
     currentWeatherEl.appendChild(cityEl);
-    currentWeatherEl.append(currentTemp,currentWind,currentHumid);
+    currentWeatherEl.append(currentTemp,currentWind,currentHumid,currentUVI);
     searchResultsEl.appendChild(currentWeatherEl);
 
     // show 5-day forecast
@@ -134,6 +134,7 @@ var showWeather = function(data, cityName) {
     }
 }
 
+// save city to local storage
 var storeCity = function(lat, lon, cityName) {
     var currentCity = {lat: lat, lon: lon, cityName: cityName};
     cities.push(currentCity);
@@ -141,19 +142,23 @@ var storeCity = function(lat, lon, cityName) {
     localStorage.setItem("cities", JSON.stringify(cities));
 }
 
+// write city to list on site after search
 var writeCityToList = function(lat, lon, cityName) {
     var cityListItemEl = document.createElement("li");
     cityListItemEl.innerHTML = "<span class='btn' data-lat='" + lat + "' data-lon='" + lon + "'>" + cityName + "</span>";
     savedCityListEl.appendChild(cityListItemEl);
 }
 
+// get weather for saved city
 var savedCityHandler = function(event) {
+    event.preventDefault();
     var lat = event.target.getAttribute("data-lat");
     var lon = event.target.getAttribute("data-lon");
     var cityName = event.target.innerHTML;
     getWeather(lat, lon, cityName);
 }
 
+// load city list from local storage
 var loadCities = function() {
     cities = JSON.parse(localStorage.getItem("cities"));
       // init array if localstorage is empty
