@@ -5,6 +5,8 @@ var searchCityEl = document.querySelector("#search-city");
 var searchResultsEl = document.querySelector("#results");
 var fiveDayForecastEl = document.querySelector("#future");
 
+var savedCityListEl = document.querySelector("#city-group");
+
 // capture search input
 var formSubmitHandler = function(event) {
     event.preventDefault();
@@ -25,6 +27,7 @@ var getLonLat = function(cityName) {
         if (response.ok) {
             response.json().then(function (data) {
                 getWeather(data.latt, data.longt, cityName);
+                storeCity(data.latt, data.longt, cityName);
             });
         } else {
             alert("Error: City Not Found");
@@ -104,6 +107,7 @@ var showWeather = function(data, cityName) {
     searchResultsEl.appendChild(currentWeatherEl);
 
     // show 5-day forecast
+    fiveDayForecastEl.textContent = "";
     var fiveDayHeader = document.createElement("h2");
     fiveDayHeader.classList = "col-12";
     fiveDayHeader.innerText = "5-Day Forecast:";
@@ -112,7 +116,7 @@ var showWeather = function(data, cityName) {
         var dateVal = getDate(data.daily[i].dt);
         console.log(dateVal, data.daily[i].temp.day, data.daily[i].wind_speed, data.daily[i].humidity);
         var fiveDayWeatherEl = document.createElement("div");
-        fiveDayWeatherEl.classList = "col-12 col-md-6 col-lg-4 col-xl-2 five-days";
+        fiveDayWeatherEl.classList = "col-12 col-md-3 col-xl-2 five-days";
         var futureDate = document.createElement("p");
         futureDate.innerText = "(" + dateVal + ")";
         var futureIcon = document.createElement("img");
@@ -129,5 +133,19 @@ var showWeather = function(data, cityName) {
     }
 }
 
+var storeCity = function(lat, lon, cityName) {
+    var cityListItemEl = document.createElement("li");
+    cityListItemEl.innerHTML = "<span class='btn' data-lat='" + lat + "' data-lon='" + lon + "'>" + cityName + "</span>";
+    savedCityListEl.appendChild(cityListItemEl);
+}
+
+var savedCityHandler = function(event) {
+    var lat = event.target.getAttribute("data-lat");
+    var lon = event.target.getAttribute("data-lon");
+    var cityName = event.target.innerHTML;
+    getWeather(lat, lon, cityName);
+}
+
 // listen for search submission
 searchFormEl.addEventListener("submit", formSubmitHandler);
+savedCityListEl.addEventListener("click", savedCityHandler);
