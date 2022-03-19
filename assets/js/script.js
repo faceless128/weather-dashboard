@@ -3,6 +3,7 @@ var searchFormEl = document.querySelector("#search-form");
 var searchCityEl = document.querySelector("#search-city");
 
 var searchResultsEl = document.querySelector("#results");
+var fiveDayForecastEl = document.querySelector("#future");
 
 // capture search input
 var formSubmitHandler = function(event) {
@@ -99,15 +100,33 @@ var showWeather = function(data, cityName) {
     var colorUVI = styleColorUVI(data.current.uvi);
     currentUVI.innerHTML = "UV Index: <span class='p-1 " + colorUVI + "'>" + data.current.uvi + "</span>";
     currentWeatherEl.appendChild(cityEl);
-    currentWeatherEl.append(currentTemp,currentWind,currentHumid,currentUVI);
+    currentWeatherEl.append(currentTemp,currentWind,currentHumid);
+    searchResultsEl.appendChild(currentWeatherEl);
 
     // show 5-day forecast
-    for (var i = 1; i< 6; i++) {
+    var fiveDayHeader = document.createElement("h2");
+    fiveDayHeader.classList = "col-12";
+    fiveDayHeader.innerText = "5-Day Forecast:";
+    fiveDayForecastEl.appendChild(fiveDayHeader);
+    for (var i = 1; i < 6; i++) {
         var dateVal = getDate(data.daily[i].dt);
         console.log(dateVal, data.daily[i].temp.day, data.daily[i].wind_speed, data.daily[i].humidity);
+        var fiveDayWeatherEl = document.createElement("div");
+        fiveDayWeatherEl.classList = "col-12 col-md-6 col-lg-4 col-xl-2 five-days";
+        var futureDate = document.createElement("p");
+        futureDate.innerText = "(" + dateVal + ")";
+        var futureIcon = document.createElement("img");
+        futureIcon.src = "http://openweathermap.org/img/w/" + data.daily[i].weather[0].icon + ".png";
+        futureIcon.alt = data.daily[i].weather[0].main + ": " + data.daily[i].weather[0].description;
+        var futureTemp = document.createElement("p");
+        futureTemp.innerText = "Temp: " + data.daily[i].temp.day + "F";
+        var futureWind = document.createElement("p");
+        futureWind.innerText = "Wind: " + data.daily[i].wind_speed + "MPH";
+        var futureHumid = document.createElement("p");
+        futureHumid.innerText = "Humidity: " + data.daily[i].humidity + " %";
+        fiveDayWeatherEl.append(futureDate,futureIcon,futureTemp,futureWind,futureHumid);
+        fiveDayForecastEl.appendChild(fiveDayWeatherEl);
     }
-
-    searchResultsEl.appendChild(currentWeatherEl);
 }
 
 // listen for search submission
