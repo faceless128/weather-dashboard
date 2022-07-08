@@ -1,7 +1,7 @@
 # Weather Dashboard
 ## A simple weather checking application
 
-Quickly track importan aspects of the weather at a glance.
+Quickly track important aspects of the weather at a glance.
 
 ## Features
 
