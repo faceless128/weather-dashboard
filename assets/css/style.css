@@ -1,93 +1,93 @@
 /* styles for search header */
 h2 {
-    font-size: 1.7rem;
+  font-size: 1.7rem;
 }
 
 /* style sfor search box */
 .form-input {
-    width: 100%;
-    padding: 3%;
-    margin: 5px 0;
-    font-size: 1.2rem;
-    border: 2px solid black;
-    border-radius: .3rem;
+  width: 100%;
+  padding: 3%;
+  margin: 5px 0;
+  font-size: 1.2rem;
+  border: 2px solid black;
+  border-radius: .3rem;
  }
  
  /* styles for search button */
 .btn {
-    font-size: 1.3rem;
-    text-decoration:none;
-    padding: 6px 5px;
-    width: 100%;
-    display: block;
-    margin: 5px 0;
-    border-radius: .3rem;
-    color: lightgray;
-    border: none;
-    outline: none;
-    background-color: gray;
-    box-shadow: 3px 3px black;
-    transform: translate(-1px, -1px);
+  font-size: 1.3rem;
+  text-decoration:none;
+  padding: 6px 5px;
+  width: 100%;
+  display: block;
+  margin: 5px 0;
+  border-radius: .3rem;
+  color: lightgray;
+  border: none;
+  outline: none;
+  background-color: gray;
+  box-shadow: 3px 3px black;
+  transform: translate(-1px, -1px);
  }
   
 .btn:hover {
-   color: gray;
-   background-color: lightgray;
-   transform: translate(0, 0);
-   box-shadow: 2px 2px black;
+  color: gray;
+  background-color: lightgray;
+  transform: translate(0, 0);
+  box-shadow: 2px 2px black;
 }
 
 /* styles for saved cities list */
 .city-group {
-    padding: 0;
-    list-style: none;
-    margin-top: 10px;
-    border-top: 3px;
-    padding-top: 10px;
-    border-color: black;
+  padding: 0;
+  list-style: none;
+  margin-top: 10px;
+  border-top: 3px;
+  padding-top: 10px;
+  border-color: black;
   }
 
 /* styles for current weather */
 #results {
-    font-size: 1.2rem;
-    font-weight: 600;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 /* styles for 5-day forecast */
 #future {
-    font-size: 1.1rem;
-    font-weight: 600;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 /* styles for UV Index */
 .uvi-gre {
-      background-color: green;
-      color: white;
+  background-color: green;
+  color: white;
 }
 
 .uvi-yel {
-    background-color: yellow;
-    color: white;
+  background-color: yellow;
+  color: white;
 }
 
 .uvi-ora {
-    background-color: orange;
-    color: white;
+  background-color: orange;
+  color: white;
 }
 
 .uvi-red {
-    background-color: red;
-    color: white;
+  background-color: red;
+  color: white;
 }
 
 .uvi-vio {
-    background-color: violet;
-    color: white;
+  background-color: violet;
+  color: white;
 }
 
 /* styles for five days forecast */
 .five-days {
-    margin: 0px 1px 3px 1px;
-    background-color: grey;
-    color: white;
+  margin: 0px 1px 3px 1px;
+  background-color: grey;
+  color: white;
 }
